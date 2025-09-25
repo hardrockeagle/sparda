@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sparda Bank – Online-Banking</title>
+
+  <style>
+
+  
+
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+
+
+
+
+    :root {
+
+      --primary: #ff7a00;
+
+      --secondary: #005bbb;
+
+      --text-dark: #111;
+
+      --text-light: #777;
+
+      --bg-light: #fdfdfd;
+
+      --border: #ddd;
+
+    }
+
+
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Source Sans Pro', sans-serif;
+
+      background: var(--bg-light);
+
+      color: var(--text-dark);
+
+    }
+
+
+
+    .centered {
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      min-height: 100vh;
+
+    }
+
+
+
+    .login-box {
+
+      background: #fff;
+
+      border: 1px solid var(--border);
+
+      border-radius: 8px;
+
+      padding: 3rem 3rem;
+
+      width: 90%;
+
+      max-width: 420px;
+
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+
+      text-align: center;
+
+      margin-bottom: 2rem;
+
+    }
+
+
+
+    .logo {
+
+      font-size: 2.0rem;
+
+      font-weight: 700;
+
+      color: var(--primary);
+
+      margin-bottom: 3rem;
+
+    }
+
+    
+
+    .sub {
+
+      font-size: 1.2rem;
+
+      font-weight: 700;
+
+      color: var(--secondary);
+
+      margin-bottom: 0.5rem;
+
+      text-align: left;
+
+      padding: 0.5rem 0.8rem;
+
+    }
+
+    .form-group {
+
+      width: 96%;
+
+      padding: 0.5rem 0.8rem;
+
+      box-sizing: border-box;
+
+      margin-top: 0.3rem;
+
+      margin-bottom: 1rem;
+
+      text-align: left;
+
+      align-items: stretch;
+
+    }
+
+
+
+    label {
+
+      display: block;
+
+      margin-bottom: 0.4rem;
+
+      font-weight: 600;
+
+    }
+
+
+
+    input {
+
+      width: 100%;
+
+      padding: 0.9rem;
+
+      font-size: 1.1rem;
+
+      border: 1px solid var(--border);
+
+      border-radius: 6px;
+
+      outline: none;
+
+    }
+
+
+
+    input:focus {
+
+      border-color: var(--secondary);
+
+    }
+
+
+
+    button {
+
+  width: 50%;
+
+  padding: 0.9rem 1.2rem;
+
+  font-size: 1.1rem;
+
+  font-weight: 600;
+
+  background: var(--primary);
+
+  color: #fff;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+}
+
+
+
+
+
+    button:hover {
+
+      background: #e56c00;
+
+    }
+
+
+
+    .help-btn {
+
+      margin-top: 1rem;
+
+      width: 50%;
+
+      background: var(--secondary);
+
+    }
+
+
+
+    .header {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding: 0.8rem 1.2rem;
+
+      background: #fff;
+
+      border-bottom: 1px solid var(--border);
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 10;
+
+    }
+
+
+
+    .header-left {
+
+      font-size: 1.4rem;
+
+      font-weight: 600;
+
+      color: var(--primary);
+
+    }
+
+
+
+    .header-center {
+
+      font-size: 0.9rem;
+
+      color: var(--text-light);
+
+    }
+
+
+
+    .logout-btn {
+
+  display: inline-block;
+
+  min-width: 100px; 
+
+  padding: 0.5rem 1rem;
+
+  font-size: 0.75rem;
+
+  background: none;      
+
+  border: 1px solid var(--secondary);
+
+  color: var(--secondary);
+
+  border-radius: 4px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  align-self: center;
+
+  white-space: nowrap;
+
+}
+
+
+
+    }
+
+
+
+    .dashboard {
+
+      padding: 1.5rem;
+
+      max-width: 600px;
+
+      margin: 0 auto;
+
+    }
+
+    .saldo {
+
+      font-size: 0.9rem;
+
+      font-weight: 300;
+
+      text-align: center;
+
+      margin-top: 2rem;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+    
+
+    .balance {
+
+      font-size: 2rem;
+
+      font-weight: 700;
+
+      text-align: center;
+
+      margin-top: 0.5rem;
+
+      margin-bottom: 0.5rem;
+
+    }
+
+
+
+    .iban {
+
+      text-align: center;
+
+      color: var(--text-light);
+
+      font-size: 0.75rem;
+
+      line-height: 1;
+
+      margin-bottom: 0.5rem;
+
+      margin-top: 1rem;
+
+      user-select: none;
+
+    }
+
+    
+
+    .bic {
+
+      text-align: center;
+
+      color: var(--text-light);
+
+      font-size: 0.75rem;
+
+      line-height: 1;
+
+      margin-bottom: 2rem;
+
+      margin-top: 0.5rem;
+
+      user-select: none;
+
+    }
+
+
+
+
+
+    .functions-btn {
+
+  display: block;
+
+  width: 200px;
+
+  padding: 0.8rem;
+
+  font-size: 1.1rem;
+
+  background: #ff7a00;
+
+  color: #fff;
+
+  border: 1px solid var(--border);
+
+  border-radius: 6px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  margin: 0 auto 1.5rem auto;
+
+}
+
+
+
+    .functions-list {
+
+      display: none;
+
+	  font-weight: 700;
+
+      margin: 0 1.5rem 1.5rem 1.5rem;
+
+      padding: 0;
+
+      list-style: none;
+
+      border: 1px solid var(--border);
+
+      border-radius: 6px;
+
+      color:#ff7a00;
+
+	  background: #f9f9f9;
+
+    }
+
+
+
+    .functions-list li {
+
+      padding: 0.8rem;
+
+      border-bottom: 1px solid var(--border);
+
+      cursor: pointer;
+
+    }
+
+
+
+    .functions-list li:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+
+    .transactions {
+
+      margin-left: 1.5rem;
+
+  margin-right: 1.5rem;
+
+  margin-top: 2rem;
+
+    }
+
+
+
+    .transactions h3 {
+
+      margin-bottom: 0.8rem;
+
+      font-size: 1.2rem;
+
+      font-weight: 600;
+
+    }
+
+
+
+    .transactions ul {
+
+      list-style: none;
+
+      padding: 0;
+
+      margin: 0;
+
+    }
+
+
+
+    .transactions li {
+
+      padding: 0.6rem 0;
+
+      border-bottom: 1px solid var(--border);
+
+      font-size: 1rem;
+
+    }
+
+.transactions-box {
+
+  background: #f9f9f9;
+
+  padding: 1.2rem;
+
+  border-radius: 8px;
+
+  margin: 0;
+
+  list-style: none;
+
+}
+
+
+
+.transactions-box li {
+
+  padding: 0.6rem;
+
+  border-bottom: 1px solid #ddd;
+
+  font-size: 1rem;
+
+}
+
+
+
+.transactions-box li:last-child {
+
+  border-bottom: none;
+
+}
+
+
+
+    .overlay {
+
+      position: fixed;
+
+      top: 0; left: 0;
+
+      width: 100%; height: 100%;
+
+      background: rgba(0,0,0,0.5);
+
+      display: none;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      overflow-y: auto;
+
+      padding: 2rem 0;
+
+      z-index: 20;
+
+    }
+
+
+
+    .overlay-content {
+
+      background: #fff;
+
+      padding: 2rem;
+
+      border-radius: 8px;
+
+      width: 90%;
+
+      max-width: 500px;
+
+    }
+
+
+
+    .overlay-content h3 {
+
+      margin-top: 0;
+
+    }
+
+
+
+    .checkmark {
+
+      color: green;
+
+      font-weight: bold;
+
+      margin-left: 6px;
+
+      display: none;
+
+    }
+
+
+
+    .notice {
+
+      margin-top: 3rem;
+
+      font-size: 0.9rem;
+
+      color: var(--text-light);
+
+      text-align: center;
+
+    }
+
+
+
+    .confirmation {
+
+  max-width: 400px;     /* Box kleiner machen */
+
+  margin: 0 auto;       /* horizontal zentrieren */
+
+  padding: 20px;        /* etwas Abstand innen */
+
+  text-align: center;   /* Inhalt zentrieren */
+
+  background: #fff;     /* weißer Hintergrund */
+
+  border-radius: 8px;   /* abgerundete Ecken */
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* dezenter Schatten */
+
+}
+
+
+
+
+
+/* Container für beide Buttons */
+
+.confirmation-buttons {
+
+  display: flex;
+
+  justify-content: center;   /* zentriert nebeneinander */
+
+  align-items: center;       /* vertikal ausrichten */
+
+  gap: 12px;                 /* Abstand zwischen Buttons */
+
+  margin-top: 1rem;
+
+}
+
+
+
+/* Einheitliches Button-Design */
+
+.confirmation-buttons button,
+
+.pdf-btn,
+
+.popup-btn {
+
+  width: 140px;              /* gleiche Breite */
+
+  padding: 0.6rem 0;         /* gleiche Höhe */
+
+  font-size: 0.9rem;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  margin-bottom: 1.5rem;
+
+}
+
+
+
+/* Spezielles Styling für PDF-Button */
+
+.pdf-btn {
+
+  background: var(--secondary);
+
+  color: #fff;
+
+}
+
+
+
+/* Schließen-Button ggf. neutral */
+
+.popup-btn {
+
+  background: #eee;
+
+  color: #333;
+
+ 
+
+}
+
+
+
+
+
+form {
+
+  text-align: center;
+
+}
+
+.transactions .amount {
+
+  font-weight: 700;   /* fett */
+
+  color: #000;        /* schwarz, hebt sich ab */
+
+}
+
+.confirmation-buttons {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 20px;       /* Abstand zwischen Buttons */
+
+  margin-top: 20px;
+
+}
+
+
+
+.confirmation-buttons button {
+
+  width: 180px;    /* gleiche Breite */
+
+  padding: 12px 0; /* gleiche Höhe */
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  text-align: center;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+}
+
+/* Hover-Effekt nur für Schließen-Button */
+
+.popup-btn:hover {
+
+  color: #000000;              /* Schriftfarbe beim Hover */
+
+  background: #ddd;
+
+
+
+}
+
+
+
+/* Standard: Desktop zeigt langen Namen */
+
+.mobile-name {
+
+    display: none;
+
+}
+
+
+
+/* Mobile Ansicht: langen Namen ausblenden, kurzen anzeigen */
+
+@media (max-width: 768px) {
+
+    .desktop-name {
+
+        display: none;
+
+    }
+
+    .mobile-name {
+
+        display: inline;
+
+    }
+
+}
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Login -->
+
+  <div class="centered" id="loginPage">
+
+    <div class="login-box">
+
+      <div class="logo">Sparda Bank</div>
+
+      <div class="sub">Online Banking Login</div>
+
+
+
+      <form onsubmit="event.preventDefault(); showDashboard(); startLogoutTimer();">
+
+
+
+        <div class="form-group">
+
+          <label for="legitimation">Sparda-NetKey oder Alias</label>
+
+          <input type="text" id="legitimation" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="pin">PIN</label>
+
+          <input type="password" id="pin" required>
+
+        </div>
+
+        <button type="submit">Anmelden</button>
+
+      </form>
+
+      <button class="help-btn">Hilfe</button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Dashboard -->
+
+  <div id="dashboardPage" style="display:none;">
+
+    <div class="header">
+
+  <div class="header-left">
+
+  <span class="desktop-name">Sparda Bank Baden Württemberg eG</span>
+
+  <span class="mobile-name">Sparda Bank</span>
+
+</div>
+
+  <div class="header-center">
+
+    <span id="dateDisplay"></span>
+
+    <span id="clock"></span>
+
+  </div>
+
+  <div class="header-right">
+
+    <button class="logout-btn">✖ Logout</button>
+
+  </div>
+
+</div>
+
+    <div class="dashboard">
+    
+    
+  
+  <!-- NUR dieser Container hat Hintergrund -->
+   <div style="background: linear-gradient(to bottom, #f0f0f0, #ffffff); padding:0.5rem 1rem; border-radius:0.5rem;">
+
+    <!-- Begrüßung -->
+    <div style="text-align:right; font-size:0.75rem; margin:0.25rem 0;">
+      Willkommen, <strong>Malcolm Ritter</strong>
+    </div>
+
+    <!-- Anzeige vor dem Countdown -->
+    <div id="logoutTimerContainer" style="text-align:right; font-size:0.75rem; margin:0.25rem 0; display:none;">
+      Automatischer Logout in:
+      <span id="countdown">15:00</span>
+    </div>
+
+  </div>
+
+      <div class="saldo" id="saldo">Saldo</div>
+
+      <div class="balance" id="balance">4.387,53 €</div>
+
+      <div class="iban">IBAN: DE47 6086 0000 0135 4070 03</div>
+
+      <div class="bic">BIC: GENODEF1S02</div>
+
+      <button class="functions-btn" onclick="toggleFunctions()">Funktionen</button>
+
+      <ul class="functions-list" id="functionsList">
+
+        <li onclick="openTransfer()">Überweisung</li>
+
+        <li>Daueraufträge</li>
+
+        <li>Limits</li>
+
+        <li>Einstellungen</li>
+
+      </ul>
+
+      <div class="transactions">
+
+  <h3>Letzte Buchungen</h3>
+
+<ul id="transactionsList" class="transactions-box">
+  <li data-offset="0">| <span class="amount">+ 6.250,00 €</span> Bezügemittel SIEMENS Kostenstelle 375-297-885</li>
+  <li data-offset="1">| <span class="amount">- 1.620,00 €</span> Mietezahlung Borsigstrasse</li>
+  <li data-offset="3">| <span class="amount">- 37,45 €</span> Einkauf Rewe</li>
+  <li data-offset="3">| <span class="amount">- 56,70 €</span> RAN Tankstelle Stuttgart</li>
+  <li data-offset="5">| <span class="amount">- 22,80 €</span> Cineplex AG München</li>
+  <li data-offset="7">| <span class="amount">+ 500,00 €</span> Überweisung Max Urlaub</li>
+  <li data-offset="9">| <span class="amount">- 37,00 €</span> Haftpflichtkasse Versicherungssumme</li>
+  <li data-offset="11">| <span class="amount">- 22,45 €</span> McDonalds GmbH NL Schwabmünchen</li>
+  <li data-offset="11">| <span class="amount">- 83,70 €</span> Therme Erding EC-Kartenzahlung</li>
+  <li data-offset="13">| <span class="amount">+ 500,00 €</span> Überweisung Marie Urlaub</li>
+  
+</ul>
+
+<script>
+  function formatDate(date) {
+    return date.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
+
+  function updateTransactions() {
+    const today = new Date();
+    const items = document.querySelectorAll("#transactionsList li");
+    items.forEach(li => {
+      const offset = parseInt(li.getAttribute("data-offset")) || 0;
+      const entryDate = new Date(today);
+      entryDate.setDate(today.getDate() - offset);
+      const formattedDate = formatDate(entryDate);
+      li.innerHTML = `${formattedDate} ${li.innerHTML}`;
+    });
+  }
+
+  updateTransactions();
+</script>
+
+
+  </ul>
+
+</div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Überweisung Overlay -->
+
+  <div class="overlay" id="transferOverlay">
+
+    <div class="overlay-content" id="transferContent">
+
+      <h3>Überweisung</h3>
+
+      <form id="transferForm" onsubmit="event.preventDefault(); finishTransfer();">
+
+        <div class="form-group">
+
+          <h2 class="transfer-title">Überweisung</h2>
+
+          <label for="recipient">Empfänger</label>
+
+          <input type="text" id="empfaengerInput" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>IBAN</label>
+
+          <input type="text" id="ibanInput" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>BIC</label>
+
+          <input type="text" id="bicInput" onblur="showCheckmark()" required>
+
+          <span class="checkmark" id="bicCheck">✔</span>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Betrag (€)</label>
+
+          <input type="text" id="amountInput" pattern="[0-9]+([,\\.][0-9]{1,2})?" required placeholder="z.B. 1234,56">
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Ausführung</label>
+
+          <input type="date" id="dateInput" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Verwendungszweck</label>
+
+          <input type="text" id="verwendungsInput">
+
+       </div>
+
+<button type="submit" class="popup-btn">Fertig</button>
+
+<button type="button" class="popup-btn logout-btn" onclick="closeTransfer()">Abbrechen</button>
+
+</form>
+
+</div>
+
+
+
+  </div>
+
+
+
+  <!-- jsPDF -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+
+
+  <script>
+
+let countdownInterval;
+
+
+
+function startLogoutTimer() {
+
+  const countdown = document.getElementById("countdown");
+
+  const container = document.getElementById("logoutTimerContainer");
+
+  container.style.display = "block"; // Timer sichtbar machen
+
+
+
+  let totalSeconds = 15 * 60; // 15 Minuten
+
+
+
+  if (countdownInterval) clearInterval(countdownInterval); // Vorherigen Timer stoppen
+
+
+
+  countdownInterval = setInterval(() => {
+
+    const minutes = Math.floor(totalSeconds / 60);
+
+    const seconds = totalSeconds % 60;
+
+    countdown.innerText = `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+
+
+
+    if (totalSeconds <= 0) {
+
+      clearInterval(countdownInterval);
+
+      alert("Automatischer Logout!");
+
+      // Hier kannst du die Logout-Funktion aufrufen, z.B. logout();
+
+    }
+
+
+
+    totalSeconds--;
+
+  }, 1000);
+
+}
+
+
+
+    let lastTransferData = {};
+
+
+
+    function showDashboard() {
+
+      document.getElementById('loginPage').style.display = 'none';
+
+      document.getElementById('dashboardPage').style.display = 'block';
+
+    }
+
+
+
+    function toggleFunctions() {
+
+      const list = document.getElementById('functionsList');
+
+      list.style.display = list.style.display === 'block' ? 'none' : 'block';
+
+    }
+
+
+
+    function openTransfer() {
+
+      document.getElementById('transferOverlay').style.display = 'flex';
+
+      document.getElementById('functionsList').style.display = 'none';
+
+      document.getElementById('transferContent').innerHTML = document.getElementById('transferForm').outerHTML;
+
+    }
+
+
+
+    function closeTransfer() {
+
+      document.getElementById('transferOverlay').style.display = 'none';
+
+    }
+
+
+
+    function showCheckmark() {
+
+      document.getElementById('bicCheck').style.display = 'inline';
+
+    }
+
+
+
+    async function finishTransfer() {
+
+      const empfaenger = document.getElementById('empfaengerInput').value;
+
+      const iban = document.getElementById('ibanInput').value;
+
+      const bic = document.getElementById('bicInput').value;
+
+      const betragRaw = document.getElementById('amountInput').value.replace(',', '.');
+
+      const betrag = parseFloat(betragRaw);
+
+      const datum = document.getElementById('dateInput').value;
+
+      const verwendung = document.getElementById('verwendungsInput').value;
+
+
+
+      lastTransferData = { empfaenger, iban, bic, betrag, datum, verwendung };
+
+
+
+      if (!isNaN(betrag)) {
+
+        let currentBalance = parseFloat(
+
+          document.getElementById('balance').innerText.replace('.', '').replace(',', '.')
+
+        );
+
+        let newBalance = currentBalance - betrag;
+
+        document.getElementById('balance').innerText =
+
+          newBalance.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+
+
+
+        const heute = new Date();
+
+        const heuteString = heute.toLocaleDateString('de-DE', {
+
+          day: '2-digit',
+
+          month: '2-digit',
+
+          year: 'numeric'
+
+        });
+
+
+
+        const li = document.createElement('li');
+
+        li.innerHTML = `${heuteString} | <span class="amount">- ${betrag.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</span> ${empfaenger}`;
+
+        document.getElementById('transactionsList').appendChild(li);
+
+      }
+
+
+
+      document.getElementById('transferContent').innerHTML = `
+
+  <div class="confirmation">
+
+    <h3>Überweisung erfolgreich  ✔</h3>
+
+    <p>Die Überweisung wurde gespeichert.</p>
+
+    <div class="confirmation-buttons">
+
+      <button class="pdf-btn" onclick="downloadPDF()">PDF herunterladen</button>
+
+      <button class="logout-btn" onclick="closeTransfer()">Schließen</button>
+
+    </div>
+
+  </div>`;
+
+
+
+    }
+
+
+
+    function updateClock() {
+
+      const now = new Date();
+
+      const dateString = now.toLocaleDateString('de-DE');
+
+      const timeString = now.toLocaleTimeString('de-DE', { hour12: false });
+
+      document.getElementById('dateDisplay').innerText = dateString;
+
+      document.getElementById('clock').innerText = timeString;
+
+    }
+
+    setInterval(updateClock, 1000);
+
+    updateClock();
+
+
+
+async function downloadPDF() {
+
+  const { jsPDF } = window.jspdf;
+
+  const doc = new jsPDF();
+
+const now = new Date();
+
+const day = String(now.getDate()).padStart(2, '0');
+
+const month = String(now.getMonth() + 1).padStart(2, '0'); // Monat 0-basiert
+
+const year = now.getFullYear();
+
+
+
+// Datum als String, z. B. "2025-09-24"
+
+const dateString = `${year}-${month}-${day}`;
+
+
+
+
+
+
+
+  // --- Kopfbereich ---
+
+  doc.setFillColor(255, 122, 0);
+
+  doc.rect(0, 0, 210, 20, "F");
+
+  doc.setTextColor(255, 255, 255);
+
+  doc.setFontSize(16);
+
+  doc.text("Sparda Bank Baden Württemberg eG - Überweisungsbestätigung", 10, 13);
+
+
+
+  // --- Obere 4 Textzeilen mit sauberer Ausrichtung ---
+
+  const topY = 40;
+
+  const lineHeight = 6;
+
+  const labelX = 10;
+
+  const valueX = 60;
+
+  doc.setTextColor(0, 0, 0);
+
+  doc.setFontSize(12);
+
+
+
+  const topFields = [
+
+    { label: "Auftraggeber:", value: "Malcolm Ritter" },
+
+    { label: "IBAN:", value: "DE47 6086 0000 0135 4070 03" },
+
+    { label: "Auftragsart:", value: "Überweisung" },
+
+    { label: "Auftragsstatus:", value: "Akzeptiert" }
+
+  ];
+
+
+
+  topFields.forEach((f, index) => {
+
+    doc.text(f.label, labelX, topY + index * lineHeight);
+
+    doc.text(f.value, valueX, topY + index * lineHeight);
+
+  });
+
+
+
+  // --- QR-Code rechts neben den oberen 4 Zeilen ---
+
+  const qrText = Math.random().toString(36).substring(2, 10);
+
+  const qrDataURL = await QRCode.toDataURL(qrText);
+
+  const totalHeight = lineHeight * topFields.length;
+
+  const centerY = topY + totalHeight / 2;
+
+  const qrSize = 30; // mm
+
+  doc.addImage(qrDataURL, 'PNG', 140, centerY - qrSize/2, qrSize, qrSize);
+
+
+
+  // --- Formularangaben sauber ausgerichtet ---
+
+  let y = topY + totalHeight + 20; // Start Y nach oberen 4 Zeilen + Abstand
+
+
+
+  const fields = [
+
+    { label: "Empfänger:", value: lastTransferData.empfaenger },
+
+    { label: "IBAN:", value: lastTransferData.iban },
+
+    { label: "BIC:", value: lastTransferData.bic },
+
+    { label: "Betrag:", value: lastTransferData.betrag.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' }) },
+
+    { label: "Ausführung:", value: lastTransferData.datum },
+
+    { label: "Verwendungszweck:", value: lastTransferData.verwendung }
+
+  ];
+
+
+
+  const fieldLineHeight = 10;
+
+  fields.forEach(f => {
+
+    doc.text(f.label, labelX, y);
+
+    doc.text(f.value, valueX, y);
+
+    y += fieldLineHeight;
+
+  });
+
+
+
+  // --- Hinweistext am Ende ---
+
+  doc.setTextColor(0, 91, 187);
+
+  doc.text("Der Auftrag wurde entgegengenommen. Dieser Ausdruck ist nicht rechtsverbindlich.", 10, y + 10);
+
+doc.text("Sparda Bank Baden Württemberg eG - www.sparda-bw.de.", 10, y + 10 + 8);
+
+
+
+
+
+  // --- PDF speichern ---
+
+  doc.save(`${dateString}_Ueberweisungsbestaetigung-Sparda-Bank.pdf`);
+
+
+
+}
+
+
+
+  </script>
+
+<script>
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const logoutBtn = document.querySelector(".logout-btn");
+
+    if (logoutBtn) {
+
+      logoutBtn.addEventListener("click", () => {
+
+        // Login-Seite einblenden
+
+        document.getElementById("loginPage").style.display = "flex";
+
+        
+
+        // Dashboard oder andere Bereiche ausblenden
+
+        const dashboard = document.getElementById("dashboardPage");
+
+        if (dashboard) {
+
+          dashboard.style.display = "none";
+
+        }
+
+
+
+        // optional: Eingabefelder leeren
+
+        document.getElementById("legitimation").value = "";
+
+        document.getElementById("pin").value = "";
+
+      });
+
+    }
+
+  });
+
+const helpButton = document.querySelector(".help-btn");
+
+  helpButton.addEventListener("click", function() {
+
+    window.open("https://www.sparda-bw.de/faq", "_blank"); // Hier die gewünschte URL eintragen
+
+  });
+
+
+
+</script>
+
+</body>
+
+</html>
